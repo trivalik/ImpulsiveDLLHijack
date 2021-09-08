@@ -53,6 +53,23 @@ The tool basically acts on automating following stages performed for DLL Hijacki
 
 **Note: i & ii prerequisites should be placed in the ImpulsiveDLLHijacks.exe's directory itself.**
 
+- **Build and Setup Information:**
+
+	- **ImpulsiveDLLHijack**
+
+		- Clone the repository in Visual Studio
+		- Once project is loaded in Visual Studio go to "Project" --> "Manage NuGet packages"  --> Browse for packages and install "PeNet" -> https://www.nuget.org/packages/PeNet/
+		- Build the project!
+		- The ImpulsiveDLLHijack.exe will be inside the bin directory.
+
+	- **And for Confirmatory DLL's:**
+
+		- Clone the repository in Visual Studio
+		- Build the project with x86 and x64
+		- Rename x86 release as maldll32.dll and x64 release as maldll64.dll
+
+	- **Setup:** Copy the Confirmatory DLL's (maldll32 & maldll64) in the ImpulsiveDLLHijack.exe directory & then execute ImpulsiveDLLHijack.exe :))
+
 # 3. Usage:
 
 ![usage](https://user-images.githubusercontent.com/60843949/132341238-c6e0cad4-dfc1-4d8e-a011-73df17b652d6.PNG)
@@ -81,13 +98,17 @@ The tool basically acts on automating following stages performed for DLL Hijacki
 
 	- DLL Hijack successful even after unidentical entry point!
 
-	![entrypoint_not_found](https://user-images.githubusercontent.com/60843949/132494965-9d3b302b-360c-48b1-b2a4-ec950fddd893.PNG)
+	![entry_pointnot found - but dll is executed](https://user-images.githubusercontent.com/60843949/132639672-b14aa124-2927-44b0-90b9-7e1f9497afd5.PNG)
+
 
 - Stage: Final Results and Logs
 
 	- C:\DLLLogs\output_logs.txt:
 
 	![output_logs](https://user-images.githubusercontent.com/60843949/132496859-808bb809-9230-4aee-afef-fe71ef03e8b5.PNG)
+
+
+**Thank you, Feedback would be greatly appreciated!** - knight!
 
 
 
