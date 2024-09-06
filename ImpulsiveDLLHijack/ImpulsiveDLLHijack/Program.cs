@@ -314,7 +314,6 @@ namespace ImpulsiveDLLHijack
                     File.Copy(maldllfile, destinationpath, true);
                     File.SetAttributes(destinationpath, FileAttributes.Normal);
                     Console.WriteLine("     ->  Copy : " + dllfinalname + "-> " + destinationpath + " completed");
-                    Thread.Sleep(5000);
 
                     // Starting the Target process
 
@@ -483,7 +482,6 @@ namespace ImpulsiveDLLHijack
                 }
 
                 i += 1;
-                Thread.Sleep(3000);
             }
 
 
