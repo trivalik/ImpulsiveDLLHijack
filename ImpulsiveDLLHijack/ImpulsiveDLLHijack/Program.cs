@@ -117,8 +117,9 @@ namespace ImpulsiveDLLHijack
                         while (!rd.EndOfStream)
                         {
                             var splits = rd.ReadLine().Split(',');
-                            column5.Add(splits[4]);
-
+                            // due to culture differences, "Time of Day" could contain a comma
+                            if (splits.Length >= 10)
+                                column5.Add(splits[splits.Length - 10]);
                         }
                     }
 
