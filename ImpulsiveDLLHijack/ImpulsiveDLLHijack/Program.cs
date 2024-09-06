@@ -502,8 +502,8 @@ namespace ImpulsiveDLLHijack
 /___/_/ /_/ /_/ .___/\__,_/_/____/_/ |___/\___/_____/_____/_____/_/ /_/_/_/ /\__,_/\___/_/|_| 
              /_/                                                       /___/
                        
-                        Author: https://twitter.com/knight0x07
-                        Github: https://github.com/knight0x07
+                        Author: https://twitter.com/knight0x07 / Trivalik
+                        Github: https://github.com/knight0x07 / https://github.com/Trivalik
 
             ");
 
