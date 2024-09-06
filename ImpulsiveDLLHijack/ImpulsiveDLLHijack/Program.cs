@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 namespace ImpulsiveDLLHijack
 {
@@ -234,9 +235,25 @@ namespace ImpulsiveDLLHijack
             // Find whether the target process is x86 or x64 Architecture -> Depending on which the DLL will be acquired further
             string processname = Path.GetFileName(processpath);
             string processnamewithoutext = Path.GetFileNameWithoutExtension(processpath);
-            var peparsing = new PeNet.PeFile(processpath);
-            string PEMachineCode = peparsing.ImageNtHeaders.FileHeader.Machine.ToString();
-            
+            string PEMachineCode = "I386";
+            if (Environment.Is64BitOperatingSystem)
+            {
+                var peparsing = new PeNet.PeFile(processpath);
+                if (peparsing.IsDotNet)
+                {
+                    var assembly = Assembly.LoadFrom(processpath);
+                    assembly.ManifestModule.GetPEKind(out var peKind, out var imageFileMachine);
+                    if ((peKind & (PortableExecutableKinds.Preferred32Bit | PortableExecutableKinds.Required32Bit)) == 0)
+                    {
+                        PEMachineCode = "Amd64";
+                    }
+                }
+                else
+                {
+                    PEMachineCode = peparsing.ImageNtHeaders.FileHeader.Machine.ToString();
+                }
+            }
+
             ///Console.WriteLine("The machine code is: " + PEMachineCode);
             Console.WriteLine("\n");
             Console.WriteLine("-------------------------------------------------------------------------------------------");
@@ -503,8 +520,8 @@ namespace ImpulsiveDLLHijack
 /___/_/ /_/ /_/ .___/\__,_/_/____/_/ |___/\___/_____/_____/_____/_/ /_/_/_/ /\__,_/\___/_/|_| 
              /_/                                                       /___/
                        
-                        Author: https://twitter.com/knight0x07 / Trivalik
-                        Github: https://github.com/knight0x07 / https://github.com/Trivalik
+                        Author: https://twitter.com/knight0x07
+                        Github: https://github.com/knight0x07
 
             ");
 
