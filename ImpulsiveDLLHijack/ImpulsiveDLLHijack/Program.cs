@@ -367,14 +367,11 @@ namespace ImpulsiveDLLHijack
                             msg = "DLL Hijack successful [Entry Point Not Found - Manual Analysis Required]";
                             WriteDLLLog(paths, msg);
                         }
-                        
+
                         // File.SetAttributes(destinationpath, FileAttributes.Normal);
                         Thread.Sleep(4000);
                         File.Delete(destinationpath);
                         Console.WriteLine("     ->  Deleted: " + destinationpath);
-
-
-
                     }
                     else
                     {
@@ -390,7 +387,7 @@ namespace ImpulsiveDLLHijack
                             Process[] processes = Process.GetProcessesByName(processnamewithoutext);
                             if (processes.Length == 0)
                             {
-                                
+
                                 Console.WriteLine("     ->  Already Killed " + processname + "!");
                             }
                             else
@@ -406,12 +403,9 @@ namespace ImpulsiveDLLHijack
                                     }
 
                                 }
+
                                 Console.WriteLine("" + processname + " Killed!!");
-
                             }
-
-                           
-
                         }
 
                         // Checking if the Logs are been generated - C:\DLLLogs 
@@ -430,18 +424,14 @@ namespace ImpulsiveDLLHijack
                             }
                             else
                             {
-
                                 Console.WriteLine("     [-] DLL Hijack Unsuccessful : " + paths);
                                 Console.WriteLine("     ->  Analyzing next DLL!");
                                 msg = "DLL Hijack Unsuccessful";
                                 WriteDLLLog(paths, msg);
                             }
-
-
                         }
                         else
                         {
-
                             Console.WriteLine("     [-] DLL Hijack Unsuccessful : " + paths);
                             Console.WriteLine("     ->  Analyzing next DLL!");
                             msg = "DLL Hijack Unsuccessful";
@@ -450,43 +440,25 @@ namespace ImpulsiveDLLHijack
 
                         File.Delete(destinationpath);
                         Console.WriteLine("     ->  Deleted: " + destinationpath);
-
                     }
-
-
-
-
-
                 }
                 catch (Exception ex)
                 {
                     if (ex is System.UnauthorizedAccessException)
                     {
-                        try
-                        {
-                            File.Delete(destinationpath);
-                        }
-                        catch
-                        {
-
-                        }
                         Console.WriteLine("     [-] Copy: Access to Path is Denied: " + destinationpath);
                         string msge = "Copy: Access to Path is Denied";
                         WriteDLLLog(paths, msge);
-                        
-                        
-
-
                     }
-
+                }
+                finally
+                {
+                    // make sure that following dll test are not affected
+                    File.Delete(destinationpath);
                 }
 
                 i += 1;
             }
-
-
-
-
         }
 
         public static void FinalOutput(string processname)
